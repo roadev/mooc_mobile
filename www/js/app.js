@@ -13,6 +13,32 @@ app.run(function($ionicPlatform) {
       StatusBar.styleDefault();
     }
   });
+})
+
+app.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+
+  .state('app', {
+    url: '/app',
+    abstract: true,
+    templateUrl: 'templates/menu.html',
+  })
+
+  
+  .state('app.courses', {
+      url: '/courses',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/courses.html',
+          controller: 'CoursesCtrl'
+        }
+      }
+    });
+  // if none of the above states are matched, use this as the fallback
+  $urlRouterProvider.otherwise('/app/courses');
 });
 
-}());
+}()
+
+
+);
