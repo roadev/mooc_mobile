@@ -1,6 +1,6 @@
 (function() {
 
-var app = angular.module('mooc', ['ionic']);
+var app = angular.module('mooc', ['ionic', 'mooc.controllers']);
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -16,25 +16,26 @@ app.run(function($ionicPlatform) {
 })
 
 app.config(function($stateProvider, $urlRouterProvider) {
+
   $stateProvider
 
   .state('app', {
-    url: '/app',
+    url: '/',
     abstract: true,
     templateUrl: 'templates/menu.html',
+    controller: 'AppCtrl'
   })
 
   
   .state('app.courses', {
-      url: '/courses',
-      views: {
-        'menuContent': {
-          templateUrl: 'templates/courses.html',
-          controller: 'CoursesCtrl'
-        }
+    url: '/app/courses',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/courses.html',
+        controller: 'CoursesCtrl'
       }
-    });
-  // if none of the above states are matched, use this as the fallback
+    }
+  });
   $urlRouterProvider.otherwise('/app/courses');
 });
 

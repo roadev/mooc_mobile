@@ -1,12 +1,15 @@
 angular.module('mooc.controllers', [])
 
-.controller('CoursesCtrl', function($scope, $http) {
+.controller('AppCtrl', function() {})
+
+.controller('CoursesCtrl', function($http, $scope) {
 
   $scope.courses = [];
   $http.get('http://informaticaeducativaucc.com/rest/cursos')
   	.then(function(successResponse){
        $scope.courses = successResponse.data;
-    }, function(errorRepsonse){
+       console.log(successResponse);
+    }, function(errorResponse){
        $scope.error = errorRepsonse;
     });
-})
+});
